@@ -25,7 +25,9 @@ class Table extends Component
    public function save()
     {
         $this->books = Book::query();
-
+        if ($this->title !== null && $this->title !== '') {
+            $this->books->where('title','like','%'.$this->title.'%');
+        }
         if ($this->year !== null && $this->year !== '') {
             $this->books->whereYear('year', $this->year);
         }
@@ -42,7 +44,6 @@ class Table extends Component
         $this->books = $this->books->get();
         $this->search = true;
         $this->render();
-         $this->dispatch('refresh-table');
     }
 
     public function render()

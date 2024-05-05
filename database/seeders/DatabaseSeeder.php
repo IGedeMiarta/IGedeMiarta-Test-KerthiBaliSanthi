@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
 
         Author::factory(5)->create();
         Category::factory(5)->create();
-        Book::factory(20)->create();
+        Book::factory(100)->create();
         
 
         // User::factory()->create([

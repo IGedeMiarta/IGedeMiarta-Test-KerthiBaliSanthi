@@ -3,6 +3,10 @@
         <div style="display: flex; justify-content: end; gap: 20px">
             <div style="display: flex; gap: 10px">
                 <div class="mb-3">
+                    <label for="year" class="form-label">Book Title</label>
+                    <input type="text" class="form-control" id="year" wire:model="title" placeholder="type..">
+                </div>
+                <div class="mb-3">
                     <label for="year" class="form-label">Book Year</label>
                     <input type="number" class="form-control" id="year" wire:model="year" placeholder="type..">
                 </div>
@@ -34,40 +38,46 @@
         </div>
     </form>
     <hr>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Title</th>
-                <th scope="col">Year</th>
-                <th scope="col">Author</th>
-                <th scope="col">Category</th>
-                <th scope="col" class="text-center">Option</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($table as $book)
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
                 <tr>
-                    <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $book->title }}</td>
-                    <td>{{ $book->year }}</td>
-                    <td>{{ $book->getAuthor->name }}</td>
-                    <td>{{ $book->getCategory->name }}</td>
-                    <td class="text-center">
-                        <button class="btn btn-warning" wire:click.prevent="edit({{ $book->id }})"
-                            data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
-                        <button class="btn btn-danger" wire:click.prevent="delete({{ $book->id }})">Delete</button>
-                    </td>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Category</th>
+                    <th scope="col" class="text-center">Option</th>
                 </tr>
-            @empty
-                <tr>
-                    <td colspan="6" class="text-center">No data to display</td>
-                </tr>
-            @endforelse
+            </thead>
+            <tbody>
+                @forelse ($table as $book)
+                    <tr>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $book->title }}</td>
+                        <td>{{ $book->year }}</td>
+                        <td>{{ $book->getAuthor->name }}</td>
+                        <td>{{ $book->getCategory->name }}</td>
+                        <td class="text-center">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button class="btn btn-warning" wire:click.prevent="edit({{ $book->id }})"
+                                    data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
+                                <button class="btn btn-danger"
+                                    wire:click.prevent="delete({{ $book->id }})">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6" class="text-center">No data to display</td>
+                    </tr>
+                @endforelse
 
-        </tbody>
-    </table>
-    {{ $table->links('vendor.pagination.bootstrap-5') }}
+            </tbody>
+        </table>
+
+        {{ $table->links('vendor.pagination.bootstrap-5') }}
+    </div>
 </div>
 
 
