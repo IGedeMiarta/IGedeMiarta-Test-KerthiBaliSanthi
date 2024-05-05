@@ -21,13 +21,13 @@ Make sure your system meets the following requirements before installing the Lar
 1. **Clone the Project**
 
     ```bash
-    git clone https://github.com/IGedeMiarta/IGedeMiarta-Test-KerthiBaliSanthi.git
+    git clone https://github.com/IGedeMiarta/test-book.git
     ```
 
 2. **Navigate to the Project Directory**
 
     ```bash
-    cd IGedeMiarta-Test-KerthiBaliSanthi
+    cd test-book
     ```
 
 3. **Copy .env.exampe to .env**
